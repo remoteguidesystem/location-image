@@ -7,11 +7,11 @@
 </head>
 <body>
     <h2>リアルタイム画像更新</h2>
-    <img id="dynamicImage" src="https://remoteguidesystem.github.io/grafana-image/yaba13.png" width="400">
+    <img id="dynamicImage" src="https://remoteguidesystem.github.io/grafana-image/yaba14.png" width="400">
     <script>
         function updateImage() {
             var img = document.getElementById("dynamicImage");
-            img.src = "https://remoteguidesystem.github.io/grafana-image/yaba13.png?t=" + new Date().getTime()";
+            img.src = "https://remoteguidesystem.github.io/grafana-image/yaba14.png?t=" + new Date().getTime()";
         }
         setInterval(updateImage, 1000);  // 1秒ごとに更新
     </script>
