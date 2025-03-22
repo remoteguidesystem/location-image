@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動的画像更新</title>
+</head>
+<body>
+    <h2>リアルタイム画像更新</h2>
+    <img id="dynamicImage" src="https://remoteguidesystem.github.io/grafana-image/yaba101.png" width="400">
+    <script>
+        function updateImage() {
+            var img = document.getElementById("dynamicImage");
+            img.src = "https://remoteguidesystem.github.io/grafana-image/yaba101.png?t=" + new Date().getTime();
+        }
+        setInterval(updateImage, 1000);  // 1秒ごとに更新
+    </script>
+</body>
+</html>
