@@ -11,7 +11,7 @@
     <script>
         function updateImage() {
             var img = document.getElementById("dynamicImage");
-            img.src = "https://remoteguidesystem.github.io/grafana-image/yaba12.png";
+            img.src = "https://remoteguidesystem.github.io/grafana-image/yaba12.png?t=" + new Date().getTime()";
         }
         setInterval(updateImage, 1000);  // 1秒ごとに更新
     </script>
