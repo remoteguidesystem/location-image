@@ -3,17 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>動的画像更新</title>
+    <title>位置情報で画像切り替え</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>リアルタイム画像更新</h2>
-    <img id="dynamicImage" src="https://remoteguidesystem.github.io/grafana-image/yaba14.png" width="400">
-    <script>
-        function updateImage() {
-            var img = document.getElementById("dynamicImage");
-            img.src = "https://remoteguidesystem.github.io/grafana-image/yaba14.png?t=" + new Date().getTime()";
-        }
-        setInterval(updateImage, 1000);  // 1秒ごとに更新
-    </script>
+    <h1>耶馬渓ツーリズム</h1>
+    <img id="targetImage" src="images/yaba103.jpg" width="775" height="480">
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDTE4-pb1hi7N-Pfp_XfsMv099evDOkWS0",
+    authDomain: "location-viewer-rgs.firebaseapp.com",
+    databaseURL: "https://location-viewer-rgs-default-rtdb.firebaseio.com",
+    projectId: "location-viewer-rgs",
+    storageBucket: "location-viewer-rgs.firebasestorage.app",
+    messagingSenderId: "259516801179",
+    appId: "1:259516801179:web:28639a62ffdb653e97e63e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const locIDRef = ref(database, 'locID');
+
+  onValue(locIDRef, (snapshot) => {
+    const locID = snapshot.val();
+    console.log("受信したlocID:", locID);
+    const img = document.getElementById('location-image');
+    img.src = `images/yaba${locID}.jpg`;
+  });
+</script>
 </body>
 </html>
