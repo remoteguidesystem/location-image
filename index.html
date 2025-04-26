@@ -30,16 +30,19 @@
   const locIDRef = ref(database, 'locID');
 
   // locIDが更新されたら画像を切り替える
-  onValue(locIDRef, (snapshot) => {
-const locID = snapshot.val(); // locIDを受け取る
-console.log("受信したlocID:", locID);
+onValue(locIDRef, (snapshot) => {
+  const locID = snapshot.val();
+  console.log("受信したlocID:", locID);
 
-// locIDがオブジェクトでなく、正しい値（文字列や数字）であることを確認
-if (locID !== null && locID !== undefined) {
-  const img = document.getElementById('targetImage');
-  img.src = `images/yaba${locID}.jpg`;
-}
-  });
+  if (locID !== null && locID !== undefined) {
+    const img = document.getElementById('targetImage'); // ← 大文字に修正
+    if (img) {
+      img.src = `images/yaba${locID}.jpg`;
+    } else {
+      console.warn('画像要素が見つかりません');
+    }
+  }
+});
 </script>
 </body>
 </html>
