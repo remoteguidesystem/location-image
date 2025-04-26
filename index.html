@@ -24,14 +24,16 @@
     appId: "1:259516801179:web:28639a62ffdb653e97e63e"
   };
 
+  // Firebase初期化
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
   const locIDRef = ref(database, 'locID');
 
+  // locIDが更新されたら画像を切り替える
   onValue(locIDRef, (snapshot) => {
     const locID = snapshot.val();
     console.log("受信したlocID:", locID);
-    const img = document.getElementById('location-image');
+    const img = document.getElementById('targetImage'); // ←ここ修正！
     img.src = `images/yaba${locID}.jpg`;
   });
 </script>
